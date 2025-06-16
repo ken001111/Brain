@@ -1,0 +1,34 @@
+{
+    "channel_names": {
+      "0": "CT"
+    },
+    "labels": {
+      "background": 0,
+      "eyeball": 1
+    },
+    "numTraining": 20,
+    "file_ending": ".nii.gz",
+    "overwrite_image_reader_writer": "SimpleITKIO",
+    "training": [
+      {"image": "./imagesTr/eye_001_0000.nii.gz", "label": "./labelsTr/eye_001.nii.gz"},
+      {"image": "./imagesTr/eye_002_0000.nii.gz", "label": "./labelsTr/eye_002.nii.gz"},
+      {"image": "./imagesTr/eye_003_0000.nii.gz", "label": "./labelsTr/eye_003.nii.gz"},
+      {"image": "./imagesTr/eye_004_0000.nii.gz", "label": "./labelsTr/eye_004.nii.gz"},
+      {"image": "./imagesTr/eye_005_0000.nii.gz", "label": "./labelsTr/eye_005.nii.gz"},
+      {"image": "./imagesTr/eye_006_0000.nii.gz", "label": "./labelsTr/eye_006.nii.gz"},
+      {"image": "./imagesTr/eye_007_0000.nii.gz", "label": "./labelsTr/eye_007.nii.gz"},
+      {"image": "./imagesTr/eye_008_0000.nii.gz", "label": "./labelsTr/eye_008.nii.gz"},
+      {"image": "./imagesTr/eye_009_0000.nii.gz", "label": "./labelsTr/eye_009.nii.gz"},
+      {"image": "./imagesTr/eye_010_0000.nii.gz", "label": "./labelsTr/eye_010.nii.gz"},
+      {"image": "./imagesTr/eye_011_0000.nii.gz", "label": "./labelsTr/eye_011.nii.gz"},
+      {"image": "./imagesTr/eye_012_0000.nii.gz", "label": "./labelsTr/eye_012.nii.gz"},
+      {"image": "./imagesTr/eye_013_0000.nii.gz", "label": "./labelsTr/eye_013.nii.gz"},
+      {"image": "./imagesTr/eye_014_0000.nii.gz", "label": "./labelsTr/eye_014.nii.gz"},
+      {"image": "./imagesTr/eye_015_0000.nii.gz", "label": "./labelsTr/eye_015.nii.gz"},
+      {"image": "./imagesTr/eye_016_0000.nii.gz", "label": "./labelsTr/eye_016.nii.gz"},
+      {"image": "./imagesTr/eye_017_0000.nii.gz", "label": "./labelsTr/eye_017.nii.gz"},
+      {"image": "./imagesTr/eye_018_0000.nii.gz", "label": "./labelsTr/eye_018.nii.gz"},
+      {"image": "./imagesTr/eye_019_0000.nii.gz", "label": "./labelsTr/eye_019.nii.gz"},
+      {"image": "./imagesTr/eye_020_0000.nii.gz", "label": "./labelsTr/eye_020.nii.gz"}
+    ]
+  }
