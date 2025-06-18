@@ -1,0 +1,90 @@
+{
+    "foreground_mean": {
+        "Dice": 0.8127185874772185,
+        "FN": 4487.5,
+        "FP": 2838.75,
+        "IoU": 0.6887956199127048,
+        "TN": 13083504.0,
+        "TP": 16369.75,
+        "n_pred": 19208.5,
+        "n_ref": 20857.25
+    },
+    "mean": {
+        "1": {
+            "Dice": 0.8127185874772185,
+            "FN": 4487.5,
+            "FP": 2838.75,
+            "IoU": 0.6887956199127048,
+            "TN": 13083504.0,
+            "TP": 16369.75,
+            "n_pred": 19208.5,
+            "n_ref": 20857.25
+        }
+    },
+    "metric_per_case": [
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.8384604015792918,
+                    "FN": 7344,
+                    "FP": 307,
+                    "IoU": 0.7218526193332606,
+                    "TN": 13079693,
+                    "TP": 19856,
+                    "n_pred": 20163,
+                    "n_ref": 27200
+                }
+            },
+            "prediction_file": "/workspace/Brain/nnUNet_results/Dataset001_Eyeball/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_0/validation/eye_004.nii.gz",
+            "reference_file": "/workspace/Brain/nnUNet_preprocessed/Dataset001_Eyeball/gt_segmentations/eye_004.nii.gz"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.8129103419297232,
+                    "FN": 6693,
+                    "FP": 431,
+                    "IoU": 0.6847927082872439,
+                    "TN": 13084599,
+                    "TP": 15477,
+                    "n_pred": 15908,
+                    "n_ref": 22170
+                }
+            },
+            "prediction_file": "/workspace/Brain/nnUNet_results/Dataset001_Eyeball/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_0/validation/eye_009.nii.gz",
+            "reference_file": "/workspace/Brain/nnUNet_preprocessed/Dataset001_Eyeball/gt_segmentations/eye_009.nii.gz"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.71706275957545,
+                    "FN": 2161,
+                    "FP": 7649,
+                    "IoU": 0.5589227103097882,
+                    "TN": 13084959,
+                    "TP": 12431,
+                    "n_pred": 20080,
+                    "n_ref": 14592
+                }
+            },
+            "prediction_file": "/workspace/Brain/nnUNet_results/Dataset001_Eyeball/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_0/validation/eye_014.nii.gz",
+            "reference_file": "/workspace/Brain/nnUNet_preprocessed/Dataset001_Eyeball/gt_segmentations/eye_014.nii.gz"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.8824408468244085,
+                    "FN": 1752,
+                    "FP": 2968,
+                    "IoU": 0.789614441720526,
+                    "TN": 13084765,
+                    "TP": 17715,
+                    "n_pred": 20683,
+                    "n_ref": 19467
+                }
+            },
+            "prediction_file": "/workspace/Brain/nnUNet_results/Dataset001_Eyeball/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_0/validation/eye_017.nii.gz",
+            "reference_file": "/workspace/Brain/nnUNet_preprocessed/Dataset001_Eyeball/gt_segmentations/eye_017.nii.gz"
+        }
+    ]
+}
