@@ -10,6 +10,14 @@ import subprocess
 from pathlib import Path
 import shutil
 
+# PyTorch 임포트 (선택적)
+try:
+    import torch
+    TORCH_AVAILABLE = True
+except ImportError:
+    TORCH_AVAILABLE = False
+    st.warning("⚠️ PyTorch가 설치되어 있지 않습니다. 모델 추론 기능을 사용할 수 없습니다.")
+
 # 페이지 설정
 st.set_page_config(
     page_title="CT Eye Detection & Alignment",
@@ -35,8 +43,16 @@ def cleanup_temp_directory(temp_dir):
 
 def load_model_and_predict(ct_path, model_path):
     """직접 모델을 로드하여 추론 수행"""
+    if not TORCH_AVAILABLE:
+        st.error("PyTorch가 설치되어 있지 않습니다!")
+        return None, None, None
+        
     import torch
-    from nnunetv2.inference.predict_from_raw_data import nnUNetPredictor
+    try:
+        from nnunetv2.inference.predict_from_raw_data import nnUNetPredictor
+    except ImportError:
+        st.error("nnUNetv2가 설치되어 있지 않습니다!")
+        return None, None, None
     
     # GPU 사용 가능 확인
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -70,7 +86,6 @@ def load_model_and_predict(ct_path, model_path):
         ct_data = ct_nii.get_fdata()
         
         # 입력 데이터 준비 (nnUNet 형식)
-        # nnUNet은 (C, D, H, W) 형식을 기대함
         ct_data_input = ct_data[np.newaxis, ...]  # 채널 차원 추가
         
         # 추론 수행
@@ -93,6 +108,10 @@ def load_model_and_predict(ct_path, model_path):
 
 def simple_inference_with_torch(ct_path, model_path):
     """단순화된 PyTorch 직접 추론"""
+    if not TORCH_AVAILABLE:
+        st.error("PyTorch가 설치되어 있지 않습니다!")
+        return None, None, None
+        
     import torch
     import torch.nn.functional as F
     
@@ -195,6 +214,9 @@ def create_visualization(ct_data, mask_data, rotated_ct, rotated_mask, angle):
     # 중간 슬라이스 선택
     center_slice = mask_slices[len(mask_slices)//2]
     
+    fig, axes = plt.subplots
+
+# create_visualization 함수 계속
     fig, axes = plt.subplots(1, 4, figsize=(16, 4))
     
     # 원본 CT
@@ -263,10 +285,12 @@ with st.sidebar:
     # 추론 설정
     st.subheader("🔧 추론 설정")
     
-    use_gpu = st.checkbox("GPU 사용", value=torch.cuda.is_available())
+    use_gpu = st.checkbox("GPU 사용", value=TORCH_AVAILABLE and torch.cuda.is_available() if TORCH_AVAILABLE else False)
     
-    if use_gpu and not torch.cuda.is_available():
+    if use_gpu and TORCH_AVAILABLE and not torch.cuda.is_available():
         st.warning("⚠️ GPU를 사용할 수 없습니다. CPU로 실행됩니다.")
+    elif not TORCH_AVAILABLE:
+        st.error("⚠️ PyTorch가 설치되어 있지 않습니다.")
     
     batch_size = st.number_input("배치 크기", min_value=1, max_value=8, value=1)
     
@@ -280,13 +304,13 @@ with st.sidebar:
     """)
     
     # PyTorch 임포트 확인
-    try:
-        import torch
+    if TORCH_AVAILABLE:
         st.sidebar.success(f"PyTorch {torch.__version__} 사용 가능")
         if torch.cuda.is_available():
             st.sidebar.info(f"GPU: {torch.cuda.get_device_name(0)}")
-    except ImportError:
+    else:
         st.sidebar.error("PyTorch가 설치되어 있지 않습니다!")
+        st.sidebar.info("설치: pip install torch torchvision")
 
 # 메인 컨텐츠
 col1, col2 = st.columns([1, 2])
@@ -438,7 +462,6 @@ with col2:
                 st.error(f"❌ 오류 발생: {str(e)}")
                 progress_bar.empty()
                 status_text.empty()
-
 # 결과 표시
 if st.session_state.processed and 'results' in st.session_state:
     st.markdown("---")
