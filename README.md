@@ -105,7 +105,9 @@ After model inference, we perform post-processing to extract meaningful anatomic
 ---
 
 ## 📊 Train Results
-Below is the image of a rotated Brain CT, using the predicted eye mask. 
+### Trained 1000 epoch in RTX4090 setting and achieved Dice score of 0.81 in validation set. 
+<img width="402" alt="Image" src="https://github.com/user-attachments/assets/ec25fdbb-ffe3-4c3f-a1a8-ed5718edbbdf" />
+### Below is the image of a rotated Brain CT, using the predicted eye mask. 
 ![Image](https://github.com/user-attachments/assets/fc01aa13-2363-4da8-a147-40e8a4f08996)
 ---
 
