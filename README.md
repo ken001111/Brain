@@ -21,13 +21,13 @@ project_root/
 │   │   ├── imagesTs/          # 7 test CT volumes
 │   │   └── dataset.json       # nnU-Net metadata
 │
-├── preprocess/
-│   ├── convert_dicom_to_nifti.py
-│   └── ...
-│
-├── results/
-│   └── ...                    # Output predictions and metrics
-│
+├── interpolate.py             # Utility for interpolation experiments
+├── nnUNet_preprocessed/       # Preprocessed volumes ready for nnU-Net
+├── nnUNet_results/            # Trained nnU-Net checkpoints and logs
+├── predictions/               # Sample predictions exported from nnU-Net
+├── predictions_eyeball_1000/  # Additional prediction snapshots
+├── rotate.py                  # Standalone rotation/visualization script
+├── streamlit_pipeline.py      # Streamlit application entry point
 └── README.md
 ```
 
@@ -105,7 +105,7 @@ After model inference, we perform post-processing to extract meaningful anatomic
 ---
 
 ## 📊 Train Results
-### Trained 1000 epoch in RTX4090 setting and achieved Dice score of 0.81 in validation set. 
+### Trained 1000 epochs in RTX4090 setting and achieved Dice score of 0.81 in validation set.
 <img width="402" alt="Image" src="https://github.com/user-attachments/assets/ec25fdbb-ffe3-4c3f-a1a8-ed5718edbbdf" />
 
 ### Below is the image of a rotated Brain CT, using the predicted eye mask. 

@@ -1,4 +1,3 @@
-import nibabel as nib
 import numpy as np
 from scipy import ndimage
 from skimage.measure import label, regionprops
@@ -104,6 +103,7 @@ def save_single_slice_comparison(ct_data, rotated_ct, save_path='slice_compariso
     print(f"단일 슬라이스 비교 이미지 저장됨: {save_path}")
 
 def main(ct_path, mask_path, output_ct_path, output_mask_path):
+    import nibabel as nib
     print("=== 눈 정렬을 위한 CT 회전 ===\n")
 
     print("1. 데이터 로드 중...")
