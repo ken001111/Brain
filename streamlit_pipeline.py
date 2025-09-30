@@ -214,9 +214,6 @@ def create_visualization(ct_data, mask_data, rotated_ct, rotated_mask, angle):
     # 중간 슬라이스 선택
     center_slice = mask_slices[len(mask_slices)//2]
     
-    fig, axes = plt.subplots
-
-# create_visualization 함수 계속
     fig, axes = plt.subplots(1, 4, figsize=(16, 4))
     
     # 원본 CT
