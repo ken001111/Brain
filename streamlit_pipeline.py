@@ -191,14 +191,25 @@ def calculate_rotation_angle(centers):
     
     return -angle_deg, None
 
-def rotate_volume(volume_data, angle_deg):
-    """볼륨 데이터 회전"""
+def rotate_volume(volume_data, angle_deg, order=1):
+    """볼륨 데이터 회전
+
+    Parameters
+    ----------
+    volume_data : np.ndarray
+        회전할 3D 볼륨 데이터.
+    angle_deg : float
+        회전 각도(도 단위).
+    order : int, optional
+        SciPy 회전 시 사용되는 보간 차수. 기본값은 1 (선형)이며, 마스크 데이터와 같이
+        최근접 이웃 보간이 필요한 경우 0을 전달한다.
+    """
     rotated = ndimage.rotate(
         volume_data,
         angle_deg,
         axes=(1, 2),
         reshape=False,
-        order=1,
+        order=order,
         mode='constant',
         cval=volume_data.min()
     )
@@ -207,16 +218,13 @@ def rotate_volume(volume_data, angle_deg):
 def create_visualization(ct_data, mask_data, rotated_ct, rotated_mask, angle):
     """시각화 생성"""
     mask_slices = np.where(mask_data.sum(axis=(1,2)) > 0)[0]
-    
+
     if len(mask_slices) == 0:
         return None
-    
+
     # 중간 슬라이스 선택
     center_slice = mask_slices[len(mask_slices)//2]
-    
-    fig, axes = plt.subplots
 
-# create_visualization 함수 계속
     fig, axes = plt.subplots(1, 4, figsize=(16, 4))
     
     # 원본 CT
@@ -420,8 +428,8 @@ with col2:
                 progress_bar.progress(80)
                 
                 if abs(angle) > 0.5:
-                    rotated_ct = rotate_volume(ct_data, angle)
-                    rotated_mask = rotate_volume(mask_data, angle)
+                    rotated_ct = rotate_volume(ct_data, angle, order=1)
+                    rotated_mask = rotate_volume(mask_data, angle, order=0)
                 else:
                     rotated_ct = ct_data
                     rotated_mask = mask_data
